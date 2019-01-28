@@ -1,0 +1,25 @@
+unit fmPesquisar;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unPaiMDI, ExtCtrls;
+
+type
+  TfmPaiMDI1 = class(TfmPaiMDI)
+    Panel4: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmPaiMDI1: TfmPaiMDI1;
+
+implementation
+
+{$R *.dfm}
+
+end.

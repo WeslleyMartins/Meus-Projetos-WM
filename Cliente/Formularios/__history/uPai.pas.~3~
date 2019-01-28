@@ -1,0 +1,37 @@
+unit uPai;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus;
+
+type
+  TPai = class(TForm)
+    MainMenu1: TMainMenu;
+    a1: TMenuItem;
+    b1: TMenuItem;
+    procedure b1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pai: TPai;
+
+implementation
+
+uses
+  uFilho;
+
+{$R *.dfm}
+
+procedure TPai.b1Click(Sender: TObject);
+begin
+  if not Assigned(Filho) then
+    Filho := Create(Self);
+end;
+
+end.

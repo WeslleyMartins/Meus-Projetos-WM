@@ -1,0 +1,81 @@
+unit unPesquisaEscola;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unPaiMDI, ExtCtrls, DB, Grids, DBGrids;
+
+type
+  TfmPesquisaEscola = class(TfmPaiMDI)
+    Panel4: TPanel;
+    DBGrid1: TDBGrid;
+    dsEscola: TDataSource;
+    procedure SelecionarEscola(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+  private
+    FCodigoDaEscolaSelecionadaNaPesquisa: string;
+  protected
+    procedure CreateWindowHandle(const Params: TCreateParams); override;
+  public
+    class function Listar(AForm: TForm; var ACodigo: string): Boolean;
+  end;
+
+var
+  fmPesquisaEscola: TfmPesquisaEscola;
+
+implementation
+
+uses
+  unDadosClient;
+
+{$R *.dfm}
+
+{ TfmPesquisaEscola }
+
+procedure TfmPesquisaEscola.CreateWindowHandle(const Params: TCreateParams);
+begin
+  FormStyle := fsNormal;
+  Visible := False;
+  inherited;
+end;
+
+procedure TfmPesquisaEscola.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  Action := caFree;
+  Release;
+  fmPesquisaEscola := nil;
+end;
+
+procedure TfmPesquisaEscola.FormShow(Sender: TObject);
+begin
+  inherited;
+  DadosCliente.tbPesEscola.Open;
+end;
+
+class function TfmPesquisaEscola.Listar(AForm: TForm; var ACodigo: string): Boolean;
+var
+  Dialogo: TfmPesquisaEscola;
+begin
+  Dialogo := TfmPesquisaEscola.Create(AForm);
+  try
+    Result := Dialogo.ShowModal = mrOk;    
+    if Result then
+      ACodigo := Dialogo.FCodigoDaEscolaSelecionadaNaPesquisa;
+    DadosCliente.tbPesEscola.Open;  
+  finally
+    Dialogo.Release;
+  end;
+end;
+
+procedure TfmPesquisaEscola.SelecionarEscola(Sender: TObject);
+begin
+  inherited;
+  FCodigoDaEscolaSelecionadaNaPesquisa := dsEscola.DataSet.FieldByName('ESCCOD').AsString;
+  ModalResult := mrOk;
+end;
+
+end.

@@ -1,0 +1,352 @@
+inherited fmRelPai: TfmRelPai
+  Caption = 'Relat'#243'rio PAI'
+  ClientHeight = 469
+  ClientWidth = 689
+  FormStyle = fsNormal
+  ExplicitWidth = 705
+  ExplicitHeight = 507
+  PixelsPerInch = 96
+  TextHeight = 13
+  object rlRelatorioEscola: TRLReport
+    Left = -3
+    Top = -1
+    Width = 794
+    Height = 1123
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    Title = 'Listagem'
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 29
+      BandType = btHeader
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clSilver
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      object rlblRelEscolaTitulo: TRLLabel
+        Left = 326
+        Top = 0
+        Width = 66
+        Height = 19
+        Align = faCenterTop
+        Caption = 'Escolas'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 600
+        Top = 0
+        Width = 118
+        Height = 16
+        Align = faRightTop
+        Info = itPageNumber
+        Text = 'P'#225'g.:'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 67
+      Width = 718
+      Height = 43
+      BandType = btHeader
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      object rlCodigo: TRLLabel
+        Left = 3
+        Top = -2
+        Width = 42
+        Height = 14
+        Caption = 'C'#243'digo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object rlNome: TRLLabel
+        Left = 53
+        Top = -2
+        Width = 35
+        Height = 14
+        Caption = 'Nome'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object rlCNPJ: TRLLabel
+        Left = 204
+        Top = -2
+        Width = 31
+        Height = 14
+        Caption = 'CNPJ'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object rlRua: TRLLabel
+        Left = 268
+        Top = -2
+        Width = 23
+        Height = 14
+        Caption = 'Rua'
+      end
+      object rlNumero: TRLLabel
+        Left = 362
+        Top = -2
+        Width = 47
+        Height = 14
+        Caption = 'N'#250'mero'
+      end
+      object rlBairro: TRLLabel
+        Left = 415
+        Top = -2
+        Width = 36
+        Height = 14
+        Caption = 'Bairro'
+      end
+      object rlTelefone: TRLLabel
+        Left = 643
+        Top = -2
+        Width = 52
+        Height = 14
+        Caption = 'Telefone'
+      end
+      object rlCidade: TRLLabel
+        Left = 529
+        Top = -2
+        Width = 41
+        Height = 14
+        Caption = 'Cidade'
+      end
+      object rlEmail: TRLLabel
+        Left = 3
+        Top = 15
+        Width = 35
+        Height = 14
+        Caption = 'E-Mail'
+      end
+      object rlObs: TRLLabel
+        Left = 204
+        Top = 16
+        Width = 68
+        Height = 14
+        Caption = 'Observa'#231#227'o'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 110
+      Width = 718
+      Height = 50
+      object rldbtxtEscolaNome: TRLDBText
+        Left = 53
+        Top = 0
+        Width = 35
+        Height = 16
+        Align = faTopOnly
+        AutoSize = False
+        DataField = 'ESCNOM'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlNome
+        ParentFont = False
+        Transparent = False
+      end
+      object rldbtxtEscolaCod: TRLDBText
+        Left = 3
+        Top = 0
+        Width = 42
+        Height = 16
+        Align = faTopOnly
+        AutoSize = False
+        DataField = 'ESCCOD'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlCodigo
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText1: TRLDBText
+        Left = 204
+        Top = 0
+        Width = 31
+        Height = 14
+        AutoSize = False
+        DataField = 'ESCDAT'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlCNPJ
+        ParentFont = False
+      end
+      object RLDBText2: TRLDBText
+        Left = 268
+        Top = 0
+        Width = 23
+        Height = 14
+        AutoSize = False
+        DataField = 'ESCRUA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlRua
+        ParentFont = False
+      end
+      object RLDBText3: TRLDBText
+        Left = 362
+        Top = 0
+        Width = 45
+        Height = 14
+        DataField = 'ESCNUM'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlNumero
+        ParentFont = False
+      end
+      object RLDBText4: TRLDBText
+        Left = 415
+        Top = 0
+        Width = 36
+        Height = 14
+        AutoSize = False
+        DataField = 'ESCBAI'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlBairro
+        ParentFont = False
+      end
+      object RLDBText5: TRLDBText
+        Left = 643
+        Top = 0
+        Width = 41
+        Height = 14
+        DataField = 'ESCTEL'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlTelefone
+        ParentFont = False
+      end
+      object RLDBText6: TRLDBText
+        Left = 529
+        Top = 0
+        Width = 41
+        Height = 14
+        AutoSize = False
+        DataField = 'ESCCID'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlCidade
+        ParentFont = False
+      end
+      object RLDBText7: TRLDBText
+        Left = 3
+        Top = 22
+        Width = 35
+        Height = 14
+        AutoSize = False
+        DataField = 'ESCMAI'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlEmail
+        ParentFont = False
+      end
+      object RLDBText8: TRLDBText
+        Left = 204
+        Top = 17
+        Width = 45
+        Height = 14
+        DataField = 'ESCOBS'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Holder = rlObs
+        ParentFont = False
+      end
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 160
+      Width = 718
+      Height = 16
+      BandType = btFooter
+      object RLSystemInfo3: TRLSystemInfo
+        Left = 471
+        Top = 0
+        Width = 163
+        Height = 16
+        Text = 'Relat'#243'rio gerado em: '
+      end
+      object RLSystemInfo4: TRLSystemInfo
+        Left = 679
+        Top = 0
+        Width = 39
+        Height = 16
+        Align = faRightTop
+        Info = itHour
+      end
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 0
+        Top = 0
+        Width = 225
+        Height = 16
+        Info = itDetailCount
+        Text = 'Quantidade de registros: '
+      end
+    end
+  end
+end

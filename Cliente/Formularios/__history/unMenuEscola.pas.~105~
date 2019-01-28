@@ -1,0 +1,80 @@
+unit unMenuEscola;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, Menus, ComCtrls;
+
+type
+  TfmMenuEscola = class(TForm)
+    MainMenu1: TMainMenu;
+    Cadastros1: TMenuItem;
+    Escola1: TMenuItem;
+    Aluno1: TMenuItem;
+    urmas1: TMenuItem;
+    Disciplnas1: TMenuItem;
+    Consultas1: TMenuItem;
+    Escola2: TMenuItem;
+    Relatrio1: TMenuItem;
+    Relatriogeral1: TMenuItem;
+    StatusBar1: TStatusBar;
+    Timer1: TTimer;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Escola1Click(Sender: TObject);
+    procedure Aluno1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmMenuEscola: TfmMenuEscola;
+
+implementation
+
+uses
+  unDadosClient, unDialogoLogin, unCadEscola, Unit1;
+
+{$R *.dfm}
+
+procedure TfmMenuEscola.Aluno1Click(Sender: TObject);
+begin
+  if not Assigned(Form1) then
+    Form1 := TForm1.Create(Self);
+end;
+
+procedure TfmMenuEscola.Escola1Click(Sender: TObject);
+begin
+  if not Assigned(fmCadEscola) then
+    fmCadEscola := TfmCadEscola.Create(Self);
+  fmCadEscola.Show;
+end;
+
+procedure TfmMenuEscola.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  DadosCliente.Logout(StatusBar1.Panels[2].Text);
+  DadosCliente.DesconectarDCOM;
+  Application.Terminate;    
+end;
+
+procedure TfmMenuEscola.FormCreate(Sender: TObject);
+begin
+//  if not Assigned(fmLogin) then
+//    fmLogin := TfmLogin.Create(Self);
+//  fmLogin.ShowModal;
+
+  StatusBar1.Panels[0].Text := FormatDateTime(
+    '"Fortaleza   "dddd", "d" de "mmmm" de "yyyy', Date) + '    -    '+ TimeToStr(Now);
+end;
+
+procedure TfmMenuEscola.Timer1Timer(Sender: TObject);
+begin
+  Statusbar1.Panels[0].Text := FormatDateTime(
+    '"Fortaleza   "dddd", "d" de "mmmm" de "yyyy',date) + '    -    ' + TimeToStr(Now);
+end;
+
+end.

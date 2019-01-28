@@ -1,0 +1,116 @@
+unit unDadosServer;
+
+{$WARN SYMBOL_PLATFORM OFF}
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, ComServ, ComObj, VCLCom, DataBkr,
+  DBClient, Server_TLB, StdVcl, WideStrings, FMTBcd, Provider, DB, SqlExpr;
+
+type
+  TDadosServidor = class(TRemoteDataModule, IDadosServidor)
+    Conexao: TSQLConnection;
+    tbEscola: TSQLDataSet;
+    dspEscola: TDataSetProvider;
+    tbPesquisEscola: TSQLDataSet;
+    dspPesquisEscola: TDataSetProvider;
+    tbCadAlunos: TSQLDataSet;
+    tbCadAlunosALUCOD: TIntegerField;
+    tbCadAlunosALUDES: TStringField;
+    dspCadAlunos: TDataSetProvider;
+    tbEscolaESCNOM: TStringField;
+    tbEscolaESCNPJ: TStringField;
+    tbEscolaESCRUA: TStringField;
+    tbEscolaESCNUM: TStringField;
+    tbEscolaESCBAI: TStringField;
+    tbEscolaESCCID: TStringField;
+    tbEscolaESCTEL: TStringField;
+    tbEscolaESCMAI: TStringField;
+    tbEscolaESCOBS: TStringField;
+    tbEscolaESCCOD: TStringField;
+    tbPesquisEscolaESCNOM: TStringField;
+    tbPesquisEscolaESCNPJ: TStringField;
+    tbPesquisEscolaESCRUA: TStringField;
+    tbPesquisEscolaESCNUM: TStringField;
+    tbPesquisEscolaESCBAI: TStringField;
+    tbPesquisEscolaESCCID: TStringField;
+    tbPesquisEscolaESCTEL: TStringField;
+    tbPesquisEscolaESCMAI: TStringField;
+    tbPesquisEscolaESCOBS: TStringField;
+    tbPesquisEscolaESCCOD: TStringField;
+    tbEscolaESCDAT: TSQLTimeStampField;
+    tbPesquisEscolaESCDAT: TSQLTimeStampField;
+  private
+    { Private declarations }
+  protected
+    class procedure UpdateRegistry(Register: Boolean; const ClassID, ProgID: string); override;
+    procedure Login(const AUsuario, ASenha: WideString; out AErro: WordBool); safecall;
+    procedure Logout(const AUsuario: WideString); safecall;
+    function NovoCodigo: WideString; safecall;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+uses
+  unDialogoServidor, Dialogs;
+
+{$R *.DFM}
+
+class procedure TDadosServidor.UpdateRegistry(Register: Boolean; const ClassID, ProgID: string);
+begin
+  if Register then
+  begin
+    inherited UpdateRegistry(Register, ClassID, ProgID);
+    EnableSocketTransport(ClassID);
+    EnableWebTransport(ClassID);
+  end else
+  begin
+    DisableSocketTransport(ClassID);
+    DisableWebTransport(ClassID);
+    inherited UpdateRegistry(Register, ClassID, ProgID);
+  end;
+end;
+
+procedure TDadosServidor.Login(const AUsuario, ASenha: WideString;
+  out AErro: WordBool);
+begin
+  if SameText(AUsuario, 'w') and SameText(ASenha, 'f') then
+  begin
+    AErro := False;
+    fmServer.Inserir(AUsuario);
+  end
+  else
+    AErro := True;
+end;
+
+procedure TDadosServidor.Logout(const AUsuario: WideString);
+begin
+  fmServer.Remover(AUsuario);
+end;
+
+function TDadosServidor.NovoCodigo: WideString;
+var
+  Codigo: Integer;
+begin
+  Codigo := 0;
+  tbPesquisEscola.Active := True;
+  MessageDlg('A', mtError, [mbOk], 0);
+  if not tbPesquisEscola.IsEmpty then
+  begin
+    MessageDlg('B', mtError, [mbOk], 0);
+    //tbPesquisEscola.Last;
+    MessageDlg('C', mtError, [mbOk], 0);
+    Codigo := StrToInt(tbPesquisEscolaESCCOD.AsString);
+    MessageDlg(tbPesquisEscolaESCCOD.AsString, mtError, [mbOk], 0);
+  end;
+  MessageDlg('D', mtError, [mbOk], 0);
+  Result := IntToStr(Codigo + 1);
+end;
+
+initialization
+  TComponentFactory.Create(ComServer, TDadosServidor,
+    Class_DadosServidor, ciSingleInstance, tmApartment);
+end.

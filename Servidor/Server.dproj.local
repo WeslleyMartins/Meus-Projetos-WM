@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/01/16 23:53:01.580.pas,C:\Users\Weslley\Documents\RAD Studio\Projects\Unit1.pas=D:\Trabalho\Projeto\Servidor\unDialogoServidor.pas</Transaction>
+    <Transaction>2019/01/16 23:53:01.580.dfm,C:\Users\Weslley\Documents\RAD Studio\Projects\Unit1.dfm=D:\Trabalho\Projeto\Servidor\unDialogoServidor.dfm</Transaction>
+    <Transaction>2019/01/16 23:53:10.761.dproj,C:\Users\Weslley\Documents\RAD Studio\Projects\Project1.dproj=D:\Trabalho\Projeto\Servidor\Server.dproj</Transaction>
+    <Transaction>2019/01/16 23:53:39.611.pas,D:\Trabalho\Projeto\Servidor\unDialogoServidor.pas=D:\Trabalho\Projeto\Servidor\Formularios\unDialogoServidor.pas</Transaction>
+    <Transaction>2019/01/16 23:53:39.611.dfm,D:\Trabalho\Projeto\Servidor\unDialogoServidor.dfm=D:\Trabalho\Projeto\Servidor\Formularios\unDialogoServidor.dfm</Transaction>
+    <Transaction>2019/01/17 00:00:58.602.pas,D:\Trabalho\Projeto\Servidor\Unit1.pas=D:\Trabalho\Projeto\Servidor\unDadosServer.pas</Transaction>
+    <Transaction>2019/01/17 00:00:58.602.dfm,D:\Trabalho\Projeto\Servidor\Unit1.dfm=D:\Trabalho\Projeto\Servidor\unDadosServer.dfm</Transaction>
+    <Transaction>2019/01/19 19:36:53.501.pas,D:\Trabalho\Projeto\Servidor\unDialogoServidor.pas=</Transaction>
+    <Transaction>2019/01/19 19:36:53.501.dfm,D:\Trabalho\Projeto\Servidor\unDialogoServidor.dfm=</Transaction>
+  </Transactions>
+</BorlandProject>

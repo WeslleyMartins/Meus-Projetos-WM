@@ -1,0 +1,29 @@
+unit unDialogoLogin;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TfmClient = class(TForm)
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    edUsuario: TEdit;
+    edSenha: TEdit;
+    Label2: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmClient: TfmClient;
+
+implementation
+
+{$R *.dfm}
+
+end.

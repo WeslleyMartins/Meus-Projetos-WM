@@ -1,0 +1,35 @@
+program Server;
+
+uses
+  Forms,
+  Windows,
+  Dialogs,
+  Server_TLB in 'Server_TLB.pas',
+  unDadosServer in 'unDadosServer.pas' {DadosServidor: TRemoteDataModule} {DadosServidor: CoClass},
+  unDialogoServidor in 'unDialogoServidor.pas' {fmServer};
+
+{$R *.TLB}
+
+{$R *.res}
+
+var
+  hdlAplicacao : THandle;
+begin
+  CreateSemaphore(Nil, 1, 1, 'Server');
+  MessageDlg('A', mtError, [mbOk], 0);
+  hdlAplicacao := FindWindow(Nil, 'Server');
+  MessageDlg('B', mtError, [mbOk], 0);
+  if not isWindowVisible(hdlAplicacao) then
+  begin
+    MessageDlg('C', mtError, [mbOk], 0);
+    MessageBox(0, 'O Servidor já está em execução!', 'Atenção', MB_ICONEXCLAMATION or MB_OK);
+  end;
+  MessageDlg('D', mtError, [mbOk], 0);
+  SetForegroundWindow(hdlAplicacao);
+  MessageDlg('E', mtError, [mbOk], 0);
+
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmServer, fmServer);
+  Application.Run;
+end.
