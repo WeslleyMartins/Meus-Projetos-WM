@@ -18,7 +18,7 @@ object fmServer: TfmServer
   PixelsPerInch = 96
   TextHeight = 14
   object Label1: TLabel
-    Left = 47
+    Left = 49
     Top = 8
     Width = 142
     Height = 24
@@ -31,11 +31,11 @@ object fmServer: TfmServer
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 34
-    Top = 38
-    Width = 158
+    Left = 37
+    Top = 37
+    Width = 145
     Height = 18
-    Caption = 'N'#250'mero de conexo'#245'es: '
+    Caption = 'N'#250'mero de conex'#245'es:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clHighlight
     Font.Height = -15
@@ -43,8 +43,8 @@ object fmServer: TfmServer
     Font.Style = []
     ParentFont = False
   end
-  object Label3: TLabel
-    Left = 190
+  object lbUsuarios: TLabel
+    Left = 186
     Top = 38
     Width = 16
     Height = 18
