@@ -43,7 +43,7 @@ begin
   begin
     DadosCliente.RegistrarTLB;
     DadosCliente.ConectarDCOM;
-    if not DadosCliente.Login(edUsuario.Text, edSenha.Text) then
+    if DadosCliente.Login(edUsuario.Text, edSenha.Text) then
     begin
       ShowMessage('Você não tem acesso!');
       FUsuario := '';

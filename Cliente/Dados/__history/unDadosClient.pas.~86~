@@ -36,7 +36,7 @@ type
     function NovoCodigoDaEscola: string;
   end;
 
-var          
+var        
   DadosCliente: TDadosCliente;
 
 implementation
@@ -44,7 +44,7 @@ implementation
 uses
   ActiveX, ComObj, Forms, Dialogs;
 
-const
+const       
   FCaminho = 'D:\Trabalho\Projeto\Servidor\Server.TLB';//'C:\test\Server.TLB';
 
 {$R *.dfm}
@@ -59,7 +59,7 @@ end;
 
 procedure TDadosCliente.DesconectarDCOM;
 begin
-  if DadosCliente.DCOMConnection1.Connected then
+  if DCOMConnection1.Connected then
     DCOMConnection1.Connected := False;
 end;
 
@@ -67,7 +67,7 @@ function TDadosCliente.Login(const AUsuario, ASenha: string): Boolean;
 var
   Error: WordBool;
 begin
-  DCOMConnection1.AppServer.Login(AUsuario, AUsuario, Error);
+  DCOMConnection1.AppServer.Login(AUsuario, ASenha, Error);
   Result := Error;
 end;
 

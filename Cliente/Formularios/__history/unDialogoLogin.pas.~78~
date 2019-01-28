@@ -42,11 +42,8 @@ begin
   if UsuarioPreenchido then
   begin
     DadosCliente.RegistrarTLB;
-
-    if not DadosCliente.DCOMConnection1.Connected then
-      DadosCliente.ConectarDCOM;
-
-    if DadosCliente.Login(edUsuario.Text, edSenha.Text, Erro); then
+    DadosCliente.ConectarDCOM;
+    if not DadosCliente.Login(edUsuario.Text, edSenha.Text) then
     begin
       ShowMessage('Você não tem acesso!');
       FUsuario := '';
@@ -89,7 +86,7 @@ begin
   Result := ((edUsuario.Text <> '') and (edSenha.Text <> ''));
   if not Result then
   begin
-    ShowMessage('Você não tem acesso!');
+    ShowMessage('Preencher os campos!');
     edUsuario.SetFocus;
   end
 end;
