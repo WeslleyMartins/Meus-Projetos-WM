@@ -67,7 +67,7 @@ function TDadosCliente.Login(const AUsuario, ASenha: string): Boolean;
 var
   Error: WordBool;
 begin
-  DCOMConnection1.AppServer.Login(AUsuario, AUsuario, Error);
+  DCOMConnection1.AppServer.Login(AUsuario, ASenha, Error);
   Result := Error;
 end;
 
