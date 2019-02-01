@@ -10,7 +10,7 @@ uses
 
 type
   TDadosServidor = class(TRemoteDataModule, IDadosServidor)
-    Conexao: TSQLConnection;
+    SQLConexao: TSQLConnection;
     tbEscola: TSQLDataSet;
     dspEscola: TDataSetProvider;
     tbPesquisaEscola: TSQLDataSet;
@@ -47,13 +47,13 @@ type
     procedure Logout(const AUsuario: WideString); safecall;
     function NovoCodigo: WideString; safecall;
   public
-    { Public declarations }
+    procedure AfterConstruction; override;
   end;
 
 implementation
 
 uses
-  unDialogoServidor, Dialogs;
+  unDialogoServidor, Dialogs, unClassesConexao, Forms;
 
 {$R *.DFM}
 
@@ -69,6 +69,20 @@ begin
     DisableSocketTransport(ClassID);
     DisableWebTransport(ClassID);
     inherited UpdateRegistry(Register, ClassID, ProgID);
+  end;
+end;
+
+procedure TDadosServidor.AfterConstruction;
+var
+  Conexao: TConexao;
+begin
+  inherited;
+  try
+    Conexao := TConexao.Create(ExtractFilePath(Application.ExeName) +
+      'ConexaoMSSQL.ini', 'ConexaoMSSQL');
+    Conexao.Conectar(Self.SQLConexao);
+  finally
+    FreeAndNil(Conexao);
   end;
 end;
 
@@ -95,7 +109,7 @@ begin
   Result := IntToStr(tbNovoCodigoEscolaNOVO_CODIGO_ESCOLA.AsInteger);
   tbNovoCodigoEscola.Active := False;
 end;
-
+
 initialization
   TComponentFactory.Create(ComServer, TDadosServidor,
     Class_DadosServidor, ciSingleInstance, tmApartment);

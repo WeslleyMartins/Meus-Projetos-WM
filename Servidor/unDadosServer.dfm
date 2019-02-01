@@ -2,46 +2,8 @@ object DadosServidor: TDadosServidor
   OldCreateOrder = False
   Height = 172
   Width = 458
-  object Conexao: TSQLConnection
-    ConnectionName = 'ESCOLAS'
-    DriverName = 'MSSQL'
-    GetDriverFunc = 'getSQLDriverMSSQL'
-    LibraryName = 'dbxmss30.dll'
+  object SQLConexao: TSQLConnection
     LoginPrompt = False
-    Params.Strings = (
-      'DriverName=MSSQL'
-      'SchemaOverride=%.dbo'
-      'DriverUnit=DBXDynalink'
-      
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXDynalinkDriver10' +
-        '0.bpl'
-      'DriverPackage=DBXCommonDriver110.bpl'
-      
-        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-        'nd.Data.DbxDynalinkDriver,Version=11.0.5000.0,Culture=neutral,Pu' +
-        'blicKeyToken=91d62ebb5b0d1b1b'
-      
-        'DriverAssembly=Borland.Data.DbxCommonDriver,Version=11.0.5000.0,' +
-        'Culture=neutral,PublicKeyToken=a91a7c5705831a4f'
-      'HostName=Weslley-PC\MSSQLSERVERPCWES'
-      'DataBase=EscolaDB'
-      'User_Name=sa'
-      'Password=FTBCLAN'
-      'BlobSize=-1'
-      'ErrorResourceFile='
-      'LocaleCode=0000'
-      'MSSQL TransIsolation=ReadCommited'
-      'OS Authentication=False'
-      'Prepare SQL=False'
-      
-        'MetaDataPackageLoader=TDBXMsSqlMetaDataCommandFactory,DbxReadOnl' +
-        'yMetaData100.bpl'
-      
-        'MetaDataAssemblyLoader=Borland.Data.TDBXMsSqlMetaDataCommandFact' +
-        'ory,Borland.Data.DbxReadOnlyMetaData,Version=11.0.5000.0,Culture' +
-        '=neutral,PublicKeyToken=91d62ebb5b0d1b1b')
-    VendorLib = 'oledb'
-    Connected = True
     Left = 24
     Top = 56
   end
@@ -50,7 +12,7 @@ object DadosServidor: TDadosServidor
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <>
-    SQLConnection = Conexao
+    SQLConnection = SQLConexao
     Left = 112
     Top = 8
     object tbEscolaESCNOM: TStringField
@@ -110,7 +72,7 @@ object DadosServidor: TDadosServidor
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <>
-    SQLConnection = Conexao
+    SQLConnection = SQLConexao
     Left = 232
     Top = 8
     object tbPesquisaEscolaESCNOM: TStringField
@@ -175,7 +137,7 @@ object DadosServidor: TDadosServidor
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <>
-    SQLConnection = Conexao
+    SQLConnection = SQLConexao
     Left = 350
     Top = 8
     object tbNovoCodigoEscolaNOVO_CODIGO_ESCOLA: TIntegerField

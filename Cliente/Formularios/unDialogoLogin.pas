@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus,
+  cxButtons, unConfiguracaoBD;
 
 type
   TfmLogin = class(TForm)
@@ -14,11 +15,13 @@ type
     edSenha: TEdit;
     Label2: TLabel;
     btConectar: TButton;
+    btConfiguracaoBD: TcxButton;
     procedure btConectarClick(Sender: TObject);
     procedure edUsuarioKeyPress(Sender: TObject; var Key: Char);
     procedure edSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure btConfiguracaoBDClick(Sender: TObject);
   private
     FUsuario: string;
     FFecharAplicacao: Boolean;
@@ -41,7 +44,7 @@ procedure TfmLogin.btConectarClick(Sender: TObject);
 begin
   if UsuarioPreenchido then
   begin
-    DadosCliente.RegistrarTLB;
+//    DadosCliente.RegistrarTLB;
     DadosCliente.ConectarDCOM;
     if DadosCliente.Login(edUsuario.Text, edSenha.Text) then
     begin
@@ -55,6 +58,18 @@ begin
       FFecharAplicacao := False;
       Close;
     end;
+  end;
+end;
+
+procedure TfmLogin.btConfiguracaoBDClick(Sender: TObject);
+var
+  Dialogo: TfrmConfiguracaoBD;
+begin
+  Dialogo := TfrmConfiguracaoBD.Create(Self);
+  try
+    Dialogo.ShowModal;
+  finally
+    Dialogo.FreeOnRelease;
   end;
 end;
 

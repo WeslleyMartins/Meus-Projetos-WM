@@ -18,7 +18,9 @@ uses
   unConsultaEscola in 'Formularios\unConsultaEscola.pas' {fmConsultaEscola},
   unConsultaEscolaController in 'Formularios\unConsultaEscolaController.pas',
   unRelPai in 'Formularios\unRelPai.pas' {fmRelPai},
-  unRelEscolas in 'Formularios\unRelEscolas.pas' {fmRelEscolas};
+  unRelEscolas in 'Formularios\unRelEscolas.pas' {fmRelEscolas},
+  unUteis in '..\Comum\unUteis.pas',
+  unConfiguracaoBD in '..\Comum\unConfiguracaoBD.pas' {frmConfiguracaoBD};
 
 {$R *.res}
 
@@ -26,5 +28,6 @@ begin
   Application.Initialize;
   Application.CreateForm(TDadosCliente, DadosCliente);
   Application.CreateForm(TfmMenuEscola, fmMenuEscola);
+  Application.CreateForm(TfrmConfiguracaoBD, frmConfiguracaoBD);
   Application.Run;
 end.

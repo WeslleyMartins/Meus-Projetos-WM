@@ -6,7 +6,8 @@ uses
   Dialogs,
   Server_TLB in 'Server_TLB.pas',
   unDadosServer in 'unDadosServer.pas' {DadosServidor: TRemoteDataModule} {DadosServidor: CoClass},
-  unDialogoServidor in 'unDialogoServidor.pas' {fmServer};
+  unDialogoServidor in 'unDialogoServidor.pas' {fmServer},
+  unClassesConexao in 'unClassesConexao.pas';
 
 {$R *.TLB}
 
@@ -15,6 +16,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'Servidor';
   Application.CreateForm(TfmServer, fmServer);
   Application.Run;
 end.

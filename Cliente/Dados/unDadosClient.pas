@@ -25,6 +25,7 @@ type
     procedure tbPesEscolaReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,7 +43,7 @@ var
 implementation
 
 uses
-  ActiveX, ComObj, Forms, Dialogs;
+  ActiveX, ComObj, Forms, Dialogs, unUteis;
 
 const       
   FCaminho = 'D:\Trabalho\Projeto\Servidor\Server.TLB';//'C:\test\Server.TLB';
@@ -55,6 +56,19 @@ procedure TDadosCliente.ConectarDCOM;
 begin
   if not DCOMConnection1.Connected then
     DCOMConnection1.Connected := True;
+end;
+
+procedure TDadosCliente.DataModuleCreate(Sender: TObject);
+var
+  FIP,
+  FInstancia,
+  FLogin,
+  FSenha: string;
+begin
+  TutilitarioServidor.LerDadosConexao(ExtractFileDir(Application.ExeName), FIP, FInstancia, FLogin, FSenha);
+  SimpleObjectBroker1.Servers[0].Enabled := False;
+  SimpleObjectBroker1.Servers[0].ComputerName := FIP;
+  SimpleObjectBroker1.Servers[0].Enabled := True;
 end;
 
 procedure TDadosCliente.DesconectarDCOM;

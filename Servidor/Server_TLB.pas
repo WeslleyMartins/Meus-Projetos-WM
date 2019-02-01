@@ -12,16 +12,16 @@ unit Server_TLB;
 // ************************************************************************ //
 
 // $Rev: 8291 $
-// File generated on 28/01/2019 15:24:50 from Type Library described below.
+// File generated on 01/02/2019 14:44:35 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\Trabalho\Projeto\Servidor\Server.tlb (1)
+// Type Lib: D:\Git\Projetos\Meus-Projetos-WM\Servidor\Server.tlb (1)
 // LIBID: {FED1FFC6-F0D5-4821-ACF7-DB5B1E2C0002}
 // LCID: 0
 // Helpfile: 
 // HelpString: Server Library
 // DepndLst: 
-//   (1) v1.0 Midas, (C:\Windows\SysWOW64\midas.dll)
+//   (1) v1.0 Midas, (C:\WINDOWS\midas.dll)
 //   (2) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
