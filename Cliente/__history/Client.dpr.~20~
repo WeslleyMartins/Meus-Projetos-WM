@@ -1,0 +1,30 @@
+program Client;
+
+uses
+  Forms,
+  Midas,
+  MidasLib,
+  MidasCon,
+  crtl,
+  unDialogoLogin in 'Formularios\unDialogoLogin.pas' {fmLogin},
+  unMenuEscola in 'Formularios\unMenuEscola.pas' {fmMenuEscola},
+  unDadosClient in 'Dados\unDadosClient.pas' {DadosCliente: TDataModule},
+  unCadEscola in 'Formularios\unCadEscola.pas' {fmCadEscola},
+  unPesquisaEscola in 'Formularios\unPesquisaEscola.pas' {fmPesquisaEscola},
+  unConsultaPai in 'Formularios\unConsultaPai.pas' {fmConsultaPai},
+  unConsultaEscola in 'Formularios\unConsultaEscola.pas' {fmConsultaEscola},
+  unConsultaEscolaController in 'Formularios\unConsultaEscolaController.pas',
+  unRelPai in 'Formularios\unRelPai.pas' {fmRelPai},
+  unRelEscolas in 'Formularios\unRelEscolas.pas' {fmRelEscolas},
+  unConfiguracao in 'Formularios\unConfiguracao.pas' {fmConfiguracao},
+  unCadPai in 'Formularios\unCadPai.pas' {fmCadPai},
+  unUteis in '..\Comum\unUteis.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfmMenuEscola, fmMenuEscola);
+  Application.CreateForm(TDadosCliente, DadosCliente);
+  Application.Run;
+end.

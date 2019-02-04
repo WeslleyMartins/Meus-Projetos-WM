@@ -7,7 +7,7 @@ uses
   Server_TLB in 'Server_TLB.pas',
   unDadosServer in 'unDadosServer.pas' {DadosServidor: TRemoteDataModule} {DadosServidor: CoClass},
   unDialogoServidor in 'unDialogoServidor.pas' {fmServer},
-  unClassesConexao in 'unClassesConexao.pas';
+  unUteis in '..\Comum\unUteis.pas';
 
 {$R *.TLB}
 

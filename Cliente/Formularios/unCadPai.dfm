@@ -1,10 +1,9 @@
 object fmCadPai: TfmCadPai
-  Left = 218
-  Top = 143
-  BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'Cadastro PAI'
-  ClientHeight = 403
-  ClientWidth = 645
+  Left = 0
+  Top = 0
+  Caption = 'fmCadPai'
+  ClientHeight = 338
+  ClientWidth = 652
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,20 +11,18 @@ object fmCadPai: TfmCadPai
   Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsMDIChild
-  KeyPreview = True
-  OldCreateOrder = True
-  Position = poDefault
+  OldCreateOrder = False
   Visible = True
   OnClose = FormClose
-  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnShow = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Panel4: TPanel
     Left = 0
     Top = 0
-    Width = 645
-    Height = 403
+    Width = 652
+    Height = 338
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -44,8 +41,8 @@ object fmCadPai: TfmCadPai
     end
     object pnBottom: TPanel
       Left = 0
-      Top = 382
-      Width = 645
+      Top = 317
+      Width = 652
       Height = 21
       Align = alBottom
       BevelOuter = bvNone
@@ -53,7 +50,7 @@ object fmCadPai: TfmCadPai
       object StatusBar1: TStatusBar
         Left = 0
         Top = 0
-        Width = 645
+        Width = 652
         Height = 21
         Align = alClient
         Panels = <
@@ -125,7 +122,7 @@ object fmCadPai: TfmCadPai
     object ToolBar1: TToolBar
       Left = 0
       Top = 0
-      Width = 645
+      Width = 652
       Height = 57
       ButtonHeight = 44
       ButtonWidth = 89
@@ -189,28 +186,13 @@ object fmCadPai: TfmCadPai
       end
     end
   end
-  object dsCadastro: TDataSource
-    AutoEdit = False
-    DataSet = tbCadastro
-    OnStateChange = dsCadastroStateChange
-    Left = 440
-    Top = 104
-  end
-  object tbCadastro: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    AfterPost = GravarNoBanco
-    AfterDelete = GravarNoBanco
-    Left = 488
-    Top = 104
-  end
   object ImageList1: TImageList
     Height = 24
     Width = 24
     Left = 464
     Top = 64
     Bitmap = {
-      494C010107001C003C0018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107001C006C0018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000003000000001002000000000000048
       0000000000000000000000000000000000000000000000000000000000009263
       5D00A4676900A4676900A4676900A4676900A4676900A4676900A4676900A467
@@ -810,5 +792,19 @@ object fmCadPai: TfmCadPai
       87FFFF800000E00003E000078FFFFF800000F80003F0000FFFFFFF800000FF07
       FFFFFFFFFFFFFFC00001FFE7FFFFFFFF00000000000000000000000000000000
       000000000000}
+  end
+  object tbCadastro: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    AfterPost = GravarNoBanco
+    Left = 488
+    Top = 104
+  end
+  object dsCadastro: TDataSource
+    AutoEdit = False
+    DataSet = tbCadastro
+    OnStateChange = dsCadastroStateChange
+    Left = 440
+    Top = 104
   end
 end

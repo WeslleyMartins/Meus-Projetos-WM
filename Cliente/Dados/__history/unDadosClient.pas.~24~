@@ -1,0 +1,124 @@
+unit unDadosClient;
+
+interface
+
+uses
+  SysUtils, Classes, DB, DBClient, MConnect, SConnect, ObjBrkr;
+
+type
+  TDadosCliente = class(TDataModule)
+    SimpleObjectBroker1: TSimpleObjectBroker;
+    ConnectionBroker1: TConnectionBroker;
+    DCOMConnection1: TDCOMConnection;
+    tbPesEscola: TClientDataSet;
+    tbPesEscolaESCNOM: TStringField;
+    tbPesEscolaESCNPJ: TStringField;
+    tbPesEscolaESCRUA: TStringField;
+    tbPesEscolaESCNUM: TStringField;
+    tbPesEscolaESCBAI: TStringField;
+    tbPesEscolaESCCID: TStringField;
+    tbPesEscolaESCTEL: TStringField;
+    tbPesEscolaESCMAI: TStringField;
+    tbPesEscolaESCOBS: TStringField;
+    tbPesEscolaESCCOD: TStringField;
+    tbPesEscolaESCDAT: TSQLTimeStampField;
+    procedure tbPesEscolaReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
+  private
+    { Private declarations }
+  public
+    procedure RegistrarTLB;
+    procedure ConectarClienteComServidor;
+    procedure DesconectarClienteComServidor;
+    procedure Logout(AUsuario: string);
+    function Login(const AUsuario, ASenha: string): Boolean;
+    function NovoCodigoDaEscola: string;
+  end;
+
+var        
+  DadosCliente: TDadosCliente;
+
+implementation
+
+uses
+  ActiveX, ComObj, Forms, Dialogs, unUteis;
+
+{$R *.dfm}
+
+{ TDadosCliente }
+
+procedure TDadosCliente.ConectarClienteComServidor;
+var
+  Servidor: string;
+begin
+//  TutilitarioServidor.LerServidorParaConexao(ExtractFileDir(Application.ExeName),
+//    Servidor);
+//  SimpleObjectBroker1.Servers[0].Enabled := False;
+//  SimpleObjectBroker1.Servers[0].ComputerName := Servidor;
+//  SimpleObjectBroker1.Servers[0].Enabled := True;
+
+  if not ConnectionBroker1.Connected then
+    ConnectionBroker1.Connected := True;
+end;
+
+procedure TDadosCliente.DesconectarClienteComServidor;
+begin
+  if ConnectionBroker1.Connected then
+    ConnectionBroker1.Connected := False;
+end;
+
+function TDadosCliente.Login(const AUsuario, ASenha: string): Boolean;
+var
+  Error: WordBool;
+begin
+  DCOMConnection1.AppServer.Login(AUsuario, ASenha, Error);
+  Result := Error;
+end;
+
+procedure TDadosCliente.Logout(AUsuario: string);
+begin
+  DCOMConnection1.AppServer.Logout(AUsuario);
+end;
+
+function TDadosCliente.NovoCodigoDaEscola: string;
+begin
+  Result := DCOMConnection1.AppServer.NovoCodigo;
+end;
+
+procedure TDadosCliente.RegistrarTLB;
+var
+  ArquivoDaBiblioteca,
+  NomeDoDocumento: WideString;
+  Biblioteca: ITypeLib;
+  AtributosDaBiblioteca: PTLibAttr;
+  DiretorioAtual,
+  DiretorioDaBiblioteca: string;
+begin
+  DiretorioDaBiblioteca := ExtractFilePath(Application.ExeName + 'Server.TLB');
+  DiretorioAtual := GetCurrentDir;
+  if not FileExists(Application.ExeName) then
+    raise Exception.CreateFmt('Arquivo "%s" não localizado', [Application.ExeName]);
+  SetCurrentDir(DiretorioDaBiblioteca);
+  ArquivoDaBiblioteca := Application.ExeName;
+  OleCheck(LoadTypeLib(PWideChar(ArquivoDaBiblioteca), Biblioteca));
+  OleCheck(Biblioteca.GetLibAttr(AtributosDaBiblioteca));
+  try
+    OleCheck(Biblioteca.GetDocumentation(-1, nil, nil, nil, @NomeDoDocumento));
+    NomeDoDocumento := ExtractFilePath(NomeDoDocumento);
+    OleCheck(RegisterTypeLib(Biblioteca, PWideChar(ArquivoDaBiblioteca),
+      PWideChar(NomeDoDocumento)));
+  finally
+    Biblioteca.ReleaseTLibAttr(AtributosDaBiblioteca);
+    SetCurrentDir(DiretorioAtual);
+  end;
+end;
+
+procedure TDadosCliente.tbPesEscolaReconcileError(DataSet: TCustomClientDataSet;
+  E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
+begin
+  ShowMessage('Não foi possível aplicar as alterações' + #13#10 +'Erro: ' + E.Message);
+  Action := raCancel;
+end;
+
+end.

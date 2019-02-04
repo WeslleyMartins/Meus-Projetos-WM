@@ -2,7 +2,6 @@ inherited fmCadEscola: TfmCadEscola
   Caption = 'Cadastrar de Escola'
   ClientHeight = 266
   ClientWidth = 623
-  OldCreateOrder = False
   Position = poMainFormCenter
   ExplicitWidth = 639
   ExplicitHeight = 304
@@ -118,6 +117,7 @@ inherited fmCadEscola: TfmCadEscola
       DataSource = dsCadastro
       TabOrder = 1
       OnExit = ValidarCampoNome
+      OnKeyDown = IrParaOutroCampo
     end
     object dbRua: TDBEdit
       Left = 24
@@ -127,6 +127,7 @@ inherited fmCadEscola: TfmCadEscola
       DataField = 'ESCRUA'
       DataSource = dsCadastro
       TabOrder = 3
+      OnKeyDown = IrParaOutroCampo
     end
     object dbNumero: TDBEdit
       Left = 353
@@ -136,6 +137,7 @@ inherited fmCadEscola: TfmCadEscola
       DataField = 'ESCNUM'
       DataSource = dsCadastro
       TabOrder = 4
+      OnKeyDown = IrParaOutroCampo
     end
     object dbBairro: TDBEdit
       Left = 412
@@ -145,6 +147,7 @@ inherited fmCadEscola: TfmCadEscola
       DataField = 'ESCBAI'
       DataSource = dsCadastro
       TabOrder = 5
+      OnKeyDown = IrParaOutroCampo
     end
     object dbCidade: TDBEdit
       Left = 24
@@ -154,6 +157,7 @@ inherited fmCadEscola: TfmCadEscola
       DataField = 'ESCCID'
       DataSource = dsCadastro
       TabOrder = 6
+      OnKeyDown = IrParaOutroCampo
     end
     object dbTelefone: TDBEdit
       Left = 230
@@ -164,6 +168,7 @@ inherited fmCadEscola: TfmCadEscola
       DataSource = dsCadastro
       TabOrder = 7
       OnExit = ValidarCampoTelefone
+      OnKeyDown = IrParaOutroCampo
     end
     object dbEmail: TDBEdit
       Left = 353
@@ -173,6 +178,7 @@ inherited fmCadEscola: TfmCadEscola
       DataField = 'ESCMAI'
       DataSource = dsCadastro
       TabOrder = 8
+      OnKeyDown = IrParaOutroCampo
     end
     object dbCNPJ: TDBEdit
       Left = 494
@@ -183,6 +189,7 @@ inherited fmCadEscola: TfmCadEscola
       DataSource = dsCadastro
       TabOrder = 2
       OnExit = ValidarCampoCNPJ
+      OnKeyDown = IrParaOutroCampo
     end
     object dbObservacao: TDBEdit
       Left = 24
@@ -192,6 +199,7 @@ inherited fmCadEscola: TfmCadEscola
       DataField = 'ESCOBS'
       DataSource = dsCadastro
       TabOrder = 9
+      OnKeyDown = IrParaOutroCampo
       OnKeyPress = Gravar
     end
     object dbCodigo: TEdit
@@ -202,71 +210,15 @@ inherited fmCadEscola: TfmCadEscola
       MaxLength = 6
       TabOrder = 0
       OnChange = dbCodigoChange
+      OnKeyDown = IrParaOutroCampo
       OnKeyPress = dbCodigoKeyPress
-    end
-  end
-  inherited dsCadastro: TDataSource
-    Left = 264
-    Top = 216
-  end
-  inherited tbCadastro: TClientDataSet
-    ProviderName = 'dspEscola'
-    RemoteServer = DadosCliente.ConnectionBroker1
-    AfterInsert = tbCadastroAfterInsert
-    Left = 296
-    Top = 216
-    object tbCadastroESCOBS: TStringField
-      FieldName = 'ESCOBS'
-      Size = 50
-    end
-    object tbCadastroESCNOM: TStringField
-      FieldName = 'ESCNOM'
-      Size = 50
-    end
-    object tbCadastroESCNPJ: TStringField
-      FieldName = 'ESCNPJ'
-      EditMask = '99.999.999/9999-99;0;_'
-      Size = 14
-    end
-    object tbCadastroESCRUA: TStringField
-      FieldName = 'ESCRUA'
-      Size = 50
-    end
-    object tbCadastroESCNUM: TStringField
-      DisplayWidth = 10
-      FieldName = 'ESCNUM'
-      Size = 10
-    end
-    object tbCadastroESCBAI: TStringField
-      FieldName = 'ESCBAI'
-      Size = 50
-    end
-    object tbCadastroESCCID: TStringField
-      FieldName = 'ESCCID'
-      Size = 50
-    end
-    object tbCadastroESCTEL: TStringField
-      FieldName = 'ESCTEL'
-      EditMask = '99999999999999;0;_'
-      Size = 15
-    end
-    object tbCadastroESCMAI: TStringField
-      FieldName = 'ESCMAI'
-      Size = 50
-    end
-    object tbCadastroESCCOD: TStringField
-      FieldName = 'ESCCOD'
-      Size = 6
-    end
-    object tbCadastroESCDAT: TSQLTimeStampField
-      FieldName = 'ESCDAT'
     end
   end
   inherited ImageList1: TImageList
     Left = 328
     Top = 216
     Bitmap = {
-      494C010107001400500018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107001400640018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000003000000001002000000000000048
       0000000000000000000000000000000000000000000000000000000000009263
       5D00A4676900A4676900A4676900A4676900A4676900A4676900A4676900A467
@@ -866,5 +818,62 @@ inherited fmCadEscola: TfmCadEscola
       87FFFF800000E00003E000078FFFFF800000F80003F0000FFFFFFF800000FF07
       FFFFFFFFFFFFFFC00001FFE7FFFFFFFF00000000000000000000000000000000
       000000000000}
+  end
+  inherited tbCadastro: TClientDataSet
+    ProviderName = 'dspEscola'
+    RemoteServer = DadosCliente.ConnectionBroker1
+    AfterInsert = tbCadastroAfterInsert
+    Left = 296
+    Top = 216
+    object tbCadastroESCOBS: TStringField
+      FieldName = 'ESCOBS'
+      Size = 50
+    end
+    object tbCadastroESCNOM: TStringField
+      FieldName = 'ESCNOM'
+      Size = 50
+    end
+    object tbCadastroESCNPJ: TStringField
+      FieldName = 'ESCNPJ'
+      EditMask = '99.999.999/9999-99;0;_'
+      Size = 14
+    end
+    object tbCadastroESCRUA: TStringField
+      FieldName = 'ESCRUA'
+      Size = 50
+    end
+    object tbCadastroESCNUM: TStringField
+      DisplayWidth = 10
+      FieldName = 'ESCNUM'
+      Size = 10
+    end
+    object tbCadastroESCBAI: TStringField
+      FieldName = 'ESCBAI'
+      Size = 50
+    end
+    object tbCadastroESCCID: TStringField
+      FieldName = 'ESCCID'
+      Size = 50
+    end
+    object tbCadastroESCTEL: TStringField
+      FieldName = 'ESCTEL'
+      EditMask = '99999999999999;0;_'
+      Size = 15
+    end
+    object tbCadastroESCMAI: TStringField
+      FieldName = 'ESCMAI'
+      Size = 50
+    end
+    object tbCadastroESCCOD: TStringField
+      FieldName = 'ESCCOD'
+      Size = 6
+    end
+    object tbCadastroESCDAT: TSQLTimeStampField
+      FieldName = 'ESCDAT'
+    end
+  end
+  inherited dsCadastro: TDataSource
+    Left = 264
+    Top = 216
   end
 end

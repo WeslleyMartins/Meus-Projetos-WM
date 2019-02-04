@@ -39,8 +39,12 @@ type
     tbEscolaESCDAT: TSQLTimeStampField;
     tbPesquisaEscolaESCDAT: TSQLTimeStampField;
     tbNovoCodigoEscolaNOVO_CODIGO_ESCOLA: TIntegerField;
+    tbUsuarios: TSQLDataSet;
+    tbUsuariosUSUCOD: TStringField;
+    tbUsuariosUSUNOM: TStringField;
+    tbUsuariosUSUSEN: TStringField;
   private
-    { Private declarations }
+    procedure ConfigurarConexao;
   protected
     class procedure UpdateRegistry(Register: Boolean; const ClassID, ProgID: string); override;
     procedure Login(const AUsuario, ASenha: WideString; out AErro: WordBool); safecall;
@@ -53,7 +57,7 @@ type
 implementation
 
 uses
-  unDialogoServidor, Dialogs, unClassesConexao, Forms;
+  unDialogoServidor, Dialogs, unClassesConexao, Forms, unUteis, Variants;
 
 {$R *.DFM}
 
@@ -72,30 +76,29 @@ begin
   end;
 end;
 
+procedure TDadosServidor.ConfigurarConexao;
+begin
+  TutilitarioServidor.Conectar(ExtractFileDir(Application.ExeName), Self.SQLConexao);
+end;
+
 procedure TDadosServidor.AfterConstruction;
-var
-  Conexao: TConexao;
 begin
   inherited;
-  try
-    Conexao := TConexao.Create(ExtractFilePath(Application.ExeName) +
-      'ConexaoMSSQL.ini', 'ConexaoMSSQL');
-    Conexao.Conectar(Self.SQLConexao);
-  finally
-    FreeAndNil(Conexao);
-  end;
+  ConfigurarConexao;
 end;
 
 procedure TDadosServidor.Login(const AUsuario, ASenha: WideString;
   out AErro: WordBool);
 begin
-  if SameText(AUsuario, 'w') and SameText(ASenha, 'f') then
+  tbUsuarios.Active := True;
+  if tbUsuarios.Locate('USUNOM;USUSEN', VarArrayOf([AUsuario, ASenha]), []) then
   begin
     AErro := False;
     fmServer.Inserir(AUsuario);
   end
   else
     AErro := True;
+  tbUsuarios.Active := False;
 end;
 
 procedure TDadosServidor.Logout(const AUsuario: WideString);

@@ -4,10 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, unPaiMDI, RLReport;
+  Dialogs, RLReport;
 
 type
-  TfmRelPai = class(TfmPaiMDI)
+  TfmRelPai = class(TForm)
     rlRelatorioEscola: TRLReport;
     RLBand1: TRLBand;
     RLSystemInfo2: TRLSystemInfo;

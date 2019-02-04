@@ -4,11 +4,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, JvExControls, JvArrowButton, ComCtrls, ExtCtrls, ToolWin, ImgList,
-  DB, DBClient, unPaiMDI;
+  Dialogs, DB, DBClient, ImgList, ComCtrls, ToolWin, JvExControls,
+  JvArrowButton, ExtCtrls;
 
 type
-  TfmCadPai = class(TfmPaiMDI)
+  TfmCadPai = class(TForm)
     Panel4: TPanel;
     FatherShape1: TShape;
     pnBottom: TPanel;
@@ -17,27 +17,27 @@ type
     JvArrowButton1: TJvArrowButton;
     ToolBar1: TToolBar;
     btNovo: TToolButton;
-    btCancelar: TToolButton;
+    btEditar: TToolButton;
     btGravar: TToolButton;
     btExcluir: TToolButton;
-    btFechar: TToolButton;
-    dsCadastro: TDataSource;
-    tbCadastro: TClientDataSet;
-    ImageList1: TImageList;
-    btEditar: TToolButton;
+    btCancelar: TToolButton;
     btPesquisar: TToolButton;
+    btFechar: TToolButton;
+    ImageList1: TImageList;
+    tbCadastro: TClientDataSet;
+    dsCadastro: TDataSource;
     procedure btNovoClick(Sender: TObject);
-    procedure dsCadastroStateChange(Sender: TObject);
-    procedure btCancelarClick(Sender: TObject);
+    procedure btEditarClick(Sender: TObject);
     procedure btGravarClick(Sender: TObject);
     procedure btExcluirClick(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure btEditarClick(Sender: TObject);
-    procedure GravarNoBanco(DataSet: TDataSet);
-    procedure FormCreate(Sender: TObject);
-    procedure btFecharClick(Sender: TObject);
+    procedure btCancelarClick(Sender: TObject);
     procedure btPesquisarClick(Sender: TObject);
+    procedure btFecharClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure dsCadastroStateChange(Sender: TObject);
+    procedure GravarNoBanco(DataSet: TDataSet);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   protected
@@ -79,7 +79,6 @@ end;
 
 procedure TfmCadPai.btFecharClick(Sender: TObject);
 begin
-  inherited;
   if MessageDlg('Deseja realmente sair?', mtWarning, [mbYes, mbNo], 0) = mrYes then
   begin
     FecharTabelaEscola;
@@ -95,7 +94,7 @@ begin
     MessageDlg('Escola gravada com sucesso!', mtInformation, [mbOk], 0);
   end;
 end;
-
+                                                 
 procedure TfmCadPai.btNovoClick(Sender: TObject);
 begin
   LimparFiltros;
@@ -151,13 +150,11 @@ end;
 
 procedure TfmCadPai.btPesquisarClick(Sender: TObject);
 begin
-  inherited;
   PesquiarCadastro;
 end;
 
 procedure TfmCadPai.btEditarClick(Sender: TObject);
 begin
-  inherited;
   AbrirTabelaEscola;
   tbCadastro.Edit;
 end;

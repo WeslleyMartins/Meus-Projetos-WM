@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus,
-  cxButtons, unConfiguracaoBD;
+  cxButtons, unUteis;
 
 type
   TfmLogin = class(TForm)
@@ -36,7 +36,7 @@ var
 implementation
 
 uses
-  unDadosClient, unMenuEscola;
+  unDadosClient, unMenuEscola, unConfiguracao;
 
 {$R *.dfm}
 
@@ -44,8 +44,8 @@ procedure TfmLogin.btConectarClick(Sender: TObject);
 begin
   if UsuarioPreenchido then
   begin
-//    DadosCliente.RegistrarTLB;
-    DadosCliente.ConectarDCOM;
+    //DadosCliente.RegistrarTLB;
+    DadosCliente.ConectarClienteComServidor;
     if DadosCliente.Login(edUsuario.Text, edSenha.Text) then
     begin
       ShowMessage('Você não tem acesso!');
@@ -63,13 +63,13 @@ end;
 
 procedure TfmLogin.btConfiguracaoBDClick(Sender: TObject);
 var
-  Dialogo: TfrmConfiguracaoBD;
+  Dialogo: TfmConfiguracao;
 begin
-  Dialogo := TfrmConfiguracaoBD.Create(Self);
+  Dialogo := TfmConfiguracao.Create(Self);
   try
     Dialogo.ShowModal;
   finally
-    Dialogo.FreeOnRelease;
+    Dialogo.Release;
   end;
 end;
 

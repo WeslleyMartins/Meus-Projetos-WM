@@ -84,5 +84,24 @@
     <Transaction>2019/01/25 00:16:22.520.dfm,D:\Trabalho\Projeto\Cliente\Formularios\unRelEscolas.dfm=D:\Trabalho\Projeto\Cliente\Unit1.dfm</Transaction>
     <Transaction>2019/01/25 00:17:32.475.pas,D:\Trabalho\Projeto\Cliente\Unit1.pas=D:\Trabalho\Projeto\Cliente\Formularios\unRelEscolas.pas</Transaction>
     <Transaction>2019/01/25 00:17:32.475.dfm,D:\Trabalho\Projeto\Cliente\Unit1.dfm=D:\Trabalho\Projeto\Cliente\Formularios\unRelEscolas.dfm</Transaction>
+    <Transaction>2019/02/03 19:17:31.847.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\unCadPai2.pas</Transaction>
+    <Transaction>2019/02/03 19:17:31.847.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.dfm=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\unCadPai2.dfm</Transaction>
+    <Transaction>2019/02/03 19:19:22.412.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.pas=</Transaction>
+    <Transaction>2019/02/03 19:19:22.412.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.dfm=</Transaction>
+    <Transaction>2019/02/03 19:20:19.693.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\unCadPai2.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.pas</Transaction>
+    <Transaction>2019/02/03 19:20:19.693.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\unCadPai2.dfm=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.dfm</Transaction>
+    <Transaction>2019/02/03 21:44:16.123.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unConfiguracaoBD.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unConfiguracao.pas</Transaction>
+    <Transaction>2019/02/03 21:44:16.123.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unConfiguracaoBD.dfm=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unConfiguracao.dfm</Transaction>
+    <Transaction>2019/02/03 23:06:51.717.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Comum\unUteis.pas</Transaction>
+    <Transaction>2019/02/04 01:10:44.126.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai2.pas</Transaction>
+    <Transaction>2019/02/04 01:10:44.126.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.dfm=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai2.dfm</Transaction>
+    <Transaction>2019/02/04 01:13:46.131.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.pas=</Transaction>
+    <Transaction>2019/02/04 01:13:46.131.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.dfm=</Transaction>
+    <Transaction>2019/02/04 01:14:27.586.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadEscola.pas=</Transaction>
+    <Transaction>2019/02/04 01:14:27.586.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadEscola.dfm=</Transaction>
+    <Transaction>2019/02/04 01:14:42.586.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai2.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.pas</Transaction>
+    <Transaction>2019/02/04 01:14:42.587.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai2.dfm=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadPai.dfm</Transaction>
+    <Transaction>2019/02/04 01:16:59.119.pas,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.pas=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadEscola.pas</Transaction>
+    <Transaction>2019/02/04 01:16:59.119.dfm,D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Unit1.dfm=D:\Trabalho\Meus-Projetos-WM\Meus-Projetos-WM\Cliente\Formularios\unCadEscola.dfm</Transaction>
   </Transactions>
 </BorlandProject>

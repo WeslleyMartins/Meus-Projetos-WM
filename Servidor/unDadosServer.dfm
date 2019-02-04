@@ -1,10 +1,10 @@
 object DadosServidor: TDadosServidor
   OldCreateOrder = False
   Height = 172
-  Width = 458
+  Width = 507
   object SQLConexao: TSQLConnection
     LoginPrompt = False
-    Left = 24
+    Left = 32
     Top = 56
   end
   object tbEscola: TSQLDataSet
@@ -13,7 +13,7 @@ object DadosServidor: TDadosServidor
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConexao
-    Left = 112
+    Left = 120
     Top = 8
     object tbEscolaESCNOM: TStringField
       FieldName = 'ESCNOM'
@@ -64,7 +64,7 @@ object DadosServidor: TDadosServidor
   end
   object dspEscola: TDataSetProvider
     DataSet = tbEscola
-    Left = 112
+    Left = 120
     Top = 88
   end
   object tbPesquisaEscola: TSQLDataSet
@@ -73,7 +73,7 @@ object DadosServidor: TDadosServidor
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConexao
-    Left = 232
+    Left = 224
     Top = 8
     object tbPesquisaEscolaESCNOM: TStringField
       FieldName = 'ESCNOM'
@@ -126,7 +126,7 @@ object DadosServidor: TDadosServidor
   object dspPesquisEscola: TDataSetProvider
     DataSet = tbPesquisaEscola
     Options = [poAllowCommandText, poUseQuoteChar]
-    Left = 232
+    Left = 224
     Top = 88
   end
   object tbNovoCodigoEscola: TSQLDataSet
@@ -138,11 +138,33 @@ object DadosServidor: TDadosServidor
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConexao
-    Left = 350
+    Left = 342
     Top = 8
     object tbNovoCodigoEscolaNOVO_CODIGO_ESCOLA: TIntegerField
       FieldName = 'NOVO_CODIGO_ESCOLA'
       Required = True
+    end
+  end
+  object tbUsuarios: TSQLDataSet
+    SchemaName = 'sa'
+    CommandText = 'SELECT * FROM USUARIOS'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConexao
+    Left = 446
+    Top = 8
+    object tbUsuariosUSUCOD: TStringField
+      FieldName = 'USUCOD'
+      Size = 6
+    end
+    object tbUsuariosUSUNOM: TStringField
+      FieldName = 'USUNOM'
+      Size = 50
+    end
+    object tbUsuariosUSUSEN: TStringField
+      FieldName = 'USUSEN'
+      Size = 8
     end
   end
 end

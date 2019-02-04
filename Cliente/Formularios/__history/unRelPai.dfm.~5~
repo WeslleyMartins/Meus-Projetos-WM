@@ -1,6 +1,0 @@
-inherited fmRelPai: TfmRelPai
-  Caption = 'Relat'#243'rio PAI'
-  FormStyle = fsNormal
-  PixelsPerInch = 96
-  TextHeight = 13
-end

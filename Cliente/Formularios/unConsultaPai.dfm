@@ -1,12 +1,20 @@
-inherited fmConsultaPai: TfmConsultaPai
+object fmConsultaPai: TfmConsultaPai
+  Left = 0
+  Top = 0
   Caption = 'Consulta PAI'
   ClientHeight = 380
   ClientWidth = 590
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = True
+  Visible = True
   OnClose = FormClose
   OnKeyDown = FormKeyDown
-  ExplicitWidth = 606
-  ExplicitHeight = 418
   PixelsPerInch = 96
   TextHeight = 13
   object ToolBar1: TToolBar
@@ -58,7 +66,6 @@ inherited fmConsultaPai: TfmConsultaPai
     ParentColor = True
     ParentCtl3D = False
     TabOrder = 1
-    ExplicitTop = 179
     object DBGrid1: TDBGrid
       Left = 0
       Top = 0
@@ -80,7 +87,7 @@ inherited fmConsultaPai: TfmConsultaPai
     Left = 216
     Top = 264
     Bitmap = {
-      494C010103003800480018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030038004C0018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000001800000001002000000000000024
       0000000000000000000000000000000000000000000000000000000000009263
       5D00A4676900A4676900A4676900A4676900A4676900A4676900A4676900A467

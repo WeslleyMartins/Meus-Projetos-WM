@@ -1,0 +1,42 @@
+unit unCadPai;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ComCtrls, ToolWin, DB, DBClient, JvExControls, JvArrowButton,
+  ExtCtrls, ImgList;
+
+type
+  TfmCadPai = class(TForm)
+    ImageList1: TImageList;
+    Panel4: TPanel;
+    FatherShape1: TShape;
+    pnBottom: TPanel;
+    StatusBar1: TStatusBar;
+    pnBottomRight: TPanel;
+    JvArrowButton1: TJvArrowButton;
+    tbCadastro: TClientDataSet;
+    dsCadastro: TDataSource;
+    ToolBar1: TToolBar;
+    btNovo: TToolButton;
+    btEditar: TToolButton;
+    btGravar: TToolButton;
+    btExcluir: TToolButton;
+    btCancelar: TToolButton;
+    btPesquisar: TToolButton;
+    btFechar: TToolButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmCadPai: TfmCadPai;
+
+implementation
+
+{$R *.dfm}
+
+end.

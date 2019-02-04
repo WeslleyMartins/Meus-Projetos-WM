@@ -4,11 +4,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, unPaiMDI, ExtCtrls, StdCtrls, Grids, DBGrids, ComCtrls, ToolWin,
+  Dialogs, ExtCtrls, StdCtrls, Grids, DBGrids, ComCtrls, ToolWin,
   ImgList, unDadosClient, DB, DBClient;
 
 type
-  TfmConsultaPai = class(TfmPaiMDI)
+  TfmConsultaPai = class(TForm)
     ToolBar1: TToolBar;
     btConsultar: TToolButton;
     btImprimir: TToolButton;

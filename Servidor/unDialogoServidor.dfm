@@ -12,7 +12,7 @@ object fmServer: TfmServer
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poMainFormCenter
   WindowState = wsMinimized
   OnCreate = FormCreate
   PixelsPerInch = 96

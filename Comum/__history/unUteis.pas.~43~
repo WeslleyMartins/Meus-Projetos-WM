@@ -1,0 +1,212 @@
+unit unUteis;
+
+interface
+
+uses 
+  IniFiles, StrUtils, SysUtils, SqlExpr;
+
+type
+  TutilitarioServidor = class
+  private
+    { Private declarations }
+  public
+    class procedure Conectar(ACaminhoInstalacao: string;
+      Conexao: TSQLConnection);
+    class procedure LerDadosConexao(ACaminhoInstalacao: string; var AServidor,
+      AHost, ADataBase, ALogin, ASenha: string);
+    class procedure LerServidorParaConexao(ACaminhoInstalacao: string;
+      var AServidor: string); static;
+    class procedure GravarDadosConexao(ACaminhoInstalacao, AServidor, AHost,
+      ADataBase, ALogin, ASenha: string);
+  end;
+  
+  TContribuicoes = class
+  private
+    class function RetirarCaracteres(const ATexto: string;
+      const ACaracteres: array of string): string;
+  public
+    class function VerificarCNPJ(const ANumeroCNPJ: string): Boolean;
+    class function MascaraTelefone(const ATelefone: string):string;
+  end;
+
+implementation
+
+{ TutilitarioServidor }
+
+class procedure TutilitarioServidor.GravarDadosConexao(
+  ACaminhoInstalacao, AServidor, AHost, ADataBase, ALogin, ASenha: string);
+var
+  ArquivoIni : TIniFile;  
+begin
+  Delete(ACaminhoInstalacao, Length(ACaminhoInstalacao) - 7, 8); // Pelo Cliente
+  ACaminhoInstalacao := ACaminhoInstalacao + '\Base';
+  ArquivoIni := TIniFile.Create(ACaminhoInstalacao + '\Conexao.ini');
+  try
+    ArquivoIni.WriteString('Conexao', 'Servidor', AServidor);
+    ArquivoIni.WriteString('Conexao', 'HostName', AHost);
+    ArquivoIni.WriteString('Conexao', 'DataBase', ADataBase);
+    ArquivoIni.WriteString('Conexao', 'User_Name', ALogin);
+    ArquivoIni.WriteString('Conexao', 'Password', ASenha);
+  finally
+    ArquivoIni.Free;          
+  end;
+end;
+
+class procedure TutilitarioServidor.LerDadosConexao(ACaminhoInstalacao: string;
+  var AServidor, AHost, ADataBase, ALogin, ASenha: string);
+var
+  ArquivoIni : TIniFile;
+begin
+  Delete(ACaminhoInstalacao, Length(ACaminhoInstalacao) - 7, 8); // Pelo Cliente
+  ACaminhoInstalacao := ACaminhoInstalacao + '\Base';
+  ArquivoIni := TIniFile.Create(ACaminhoInstalacao + '\Conexao.ini');
+  try
+    AServidor := ArquivoIni.ReadString('Conexao', 'Servidor', AServidor);
+    AHost := ArquivoIni.ReadString('Conexao', 'HostName', AHost);
+    AHost := ArquivoIni.ReadString('Conexao', 'DataBase', ADataBase);
+    ALogin := ArquivoIni.ReadString('Conexao', 'Login', ALogin);
+    ASenha := ArquivoIni.ReadString('Conexao', 'Senha', ASenha);
+  finally
+    ArquivoIni.Free;
+  end;
+end;
+
+class procedure TutilitarioServidor.LerServidorParaConexao(
+  ACaminhoInstalacao: string; var AServidor: string);
+var
+  ArquivoIni : TIniFile;
+begin
+  Delete(ACaminhoInstalacao, Length(ACaminhoInstalacao) - 7, 8); // Pelo Cliente
+  ACaminhoInstalacao := ACaminhoInstalacao + '\Base';
+  ArquivoIni := TIniFile.Create(ACaminhoInstalacao + '\Conexao.ini');
+  try
+    AServidor := ArquivoIni.ReadString('Conexao', 'Servidor', AServidor);
+  finally
+    ArquivoIni.Free;
+  end;
+end;
+
+class procedure TutilitarioServidor.Conectar(ACaminhoInstalacao: string;
+  Conexao: TSQLConnection);
+var
+  ArquivoIni : TIniFile;
+begin
+  Delete(ACaminhoInstalacao, Length(ACaminhoInstalacao) - 8, 9); // Pelo servidor
+  ACaminhoInstalacao := ACaminhoInstalacao + '\Base';
+  ArquivoIni := TIniFile.Create(ACaminhoInstalacao + '\Conexao.ini');
+  try
+    Conexao.Params.Clear;
+    Conexao.KeepConnection := False;
+    Conexao.LoginPrompt := False;
+    Conexao.LoadParamsOnConnect := False;
+    //Conexao.ConnectionName := 'MSSQL';
+    Conexao.DriverName := 'MSSQL';                                               
+    Conexao.GetDriverFunc := 'getSQLDriverMSSQL';
+    Conexao.LibraryName := 'dbxmss30.dll';
+    Conexao.VendorLib := 'oledb';
+    Conexao.Params.Values['HostName'] := ArquivoIni.ReadString('Conexao', 'HostName', '');
+    Conexao.Params.Values['DataBase'] := ArquivoIni.ReadString('Conexao', 'DataBase', '');
+    Conexao.Params.Values['User_Name'] := ArquivoIni.ReadString('Conexao', 'User_Name', '');
+    Conexao.Params.Values['Password'] := ArquivoIni.ReadString('Conexao', 'Password', '');
+  finally
+    ArquivoIni.Free;
+  end;
+end;
+
+{ TContribuicoes }
+
+class function TContribuicoes.MascaraTelefone(const ATelefone: string): string;
+
+  function ReplicarFormatoMascara(ATamanhoExtensao:integer):string;
+  var
+    i: integer;
+  begin
+    Result := '';
+    for i := 1 to ATamanhoExtensao do
+    begin
+      Result := Result + '9'
+    end;
+  end;
+
+var
+  prefixo,
+  sufixo:string;
+  tamanho: integer;
+begin
+  Tamanho := Length(ATelefone);
+  if Tamanho >= 10 then
+  begin
+    // tirando o DDD
+    tamanho := tamanho - 2;
+    if tamanho mod 2 = 0 then
+    begin
+      prefixo := ReplicarFormatoMascara(trunc(tamanho/2));
+      sufixo := prefixo;
+    end
+    else
+    begin
+      prefixo := ReplicarFormatoMascara(trunc(tamanho/2)+1);
+      sufixo := ReplicarFormatoMascara(trunc(tamanho/2))
+    end;
+    Result := '(99)'+ prefixo +'-'+ sufixo+';0;_';
+  end
+  else
+    Result := '';
+end;
+
+class function TContribuicoes.RetirarCaracteres(const ATexto: string;
+  const ACaracteres: array of string): string;
+var
+  I: Integer;
+begin
+  Result := ATexto;
+  for I := 0 to High(ACaracteres) do
+    Result := ReplaceText(Result, ACaracteres[I], '');
+end;
+
+class function TContribuicoes.VerificarCNPJ(const ANumeroCNPJ: string): Boolean;
+var
+  Digito1, Digito2: Integer;
+  Soma: Longint;
+  CNPJ: string;
+begin
+  Result := False;
+
+  CNPJ := RetirarCaracteres(ANumeroCNPJ, ['.', '/', '-', ' ']);
+  while Length(CNPJ) < 14 do
+    CNPJ := '0' + CNPJ;
+
+  { calcula o 1o. dígito }
+  Soma := (StrToInt(CNPJ[01]) * 5) + (StrToInt(CNPJ[02]) * 4) +
+    (StrToInt(CNPJ[03]) * 3) + (StrToInt(CNPJ[04]) * 2) +
+    (StrToInt(CNPJ[05]) * 9) + (StrToInt(CNPJ[06]) * 8) +
+    (StrToInt(CNPJ[07]) * 7) + (StrToInt(CNPJ[08]) * 6) +
+    (StrToInt(CNPJ[09]) * 5) + (StrToInt(CNPJ[10]) * 4) +
+    (StrToInt(CNPJ[11]) * 3) + (StrToInt(CNPJ[12]) * 2);
+  Soma := Soma * 10;
+  Digito1 := Soma mod 11;
+  if Digito1 = 10 then
+    Digito1 := 0;
+  { compara o resultado com o 1o. digito informado }
+  if Digito1 = StrToInt(CNPJ[13]) then
+  begin
+    { se correto ... }
+    { calcula o 2o. dígito }
+    Soma := (StrToInt(CNPJ[01]) * 6) + (StrToInt(CNPJ[02]) * 5) +
+      (StrToInt(CNPJ[03]) * 4) + (StrToInt(CNPJ[04]) * 3) +
+      (StrToInt(CNPJ[05]) * 2) + (StrToInt(CNPJ[06]) * 9) +
+      (StrToInt(CNPJ[07]) * 8) + (StrToInt(CNPJ[08]) * 7) +
+      (StrToInt(CNPJ[09]) * 6) + (StrToInt(CNPJ[10]) * 5) +
+      (StrToInt(CNPJ[11]) * 4) + (StrToInt(CNPJ[12]) * 3) +
+      (StrToInt(CNPJ[13]) * 2);
+    Soma := Soma * 10;
+    Digito2 := Soma mod 11;
+    if Digito2 = 10 then
+      Digito2 := 0;
+    { compara o resultado com o 2o. digito informado }
+    if (Digito2 = StrToInt(CNPJ[14])) and (Soma > 0) then
+      Result := True;
+  end;
+end;
+
+end.

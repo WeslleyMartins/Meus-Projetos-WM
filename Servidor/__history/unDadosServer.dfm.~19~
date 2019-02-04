@@ -1,0 +1,170 @@
+object DadosServidor: TDadosServidor
+  OldCreateOrder = False
+  Height = 172
+  Width = 566
+  object SQLConexao: TSQLConnection
+    LoginPrompt = False
+    Left = 32
+    Top = 56
+  end
+  object tbEscola: TSQLDataSet
+    CommandText = 'select * from ESCOLAS'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConexao
+    Left = 120
+    Top = 8
+    object tbEscolaESCNOM: TStringField
+      FieldName = 'ESCNOM'
+      Size = 50
+    end
+    object tbEscolaESCNPJ: TStringField
+      FieldName = 'ESCNPJ'
+      EditMask = '99.999.999/9999-99;0;_'
+      Size = 14
+    end
+    object tbEscolaESCRUA: TStringField
+      FieldName = 'ESCRUA'
+      Size = 50
+    end
+    object tbEscolaESCNUM: TStringField
+      DisplayWidth = 10
+      FieldName = 'ESCNUM'
+      Size = 10
+    end
+    object tbEscolaESCBAI: TStringField
+      FieldName = 'ESCBAI'
+      Size = 50
+    end
+    object tbEscolaESCCID: TStringField
+      FieldName = 'ESCCID'
+      Size = 50
+    end
+    object tbEscolaESCTEL: TStringField
+      FieldName = 'ESCTEL'
+      EditMask = '99999999999999;0;_'
+      Size = 15
+    end
+    object tbEscolaESCMAI: TStringField
+      FieldName = 'ESCMAI'
+      Size = 50
+    end
+    object tbEscolaESCOBS: TStringField
+      FieldName = 'ESCOBS'
+      Size = 50
+    end
+    object tbEscolaESCCOD: TStringField
+      FieldName = 'ESCCOD'
+      Size = 6
+    end
+    object tbEscolaESCDAT: TSQLTimeStampField
+      FieldName = 'ESCDAT'
+    end
+  end
+  object dspEscola: TDataSetProvider
+    DataSet = tbEscola
+    Left = 120
+    Top = 88
+  end
+  object tbPesquisaEscola: TSQLDataSet
+    CommandText = 'select * from ESCOLAS'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConexao
+    Left = 240
+    Top = 8
+    object tbPesquisaEscolaESCNOM: TStringField
+      FieldName = 'ESCNOM'
+      Size = 50
+    end
+    object tbPesquisaEscolaESCNPJ: TStringField
+      FieldName = 'ESCNPJ'
+      EditMask = '99.999.999/9999-99;0;_'
+      Size = 14
+    end
+    object tbPesquisaEscolaESCRUA: TStringField
+      FieldName = 'ESCRUA'
+      Size = 50
+    end
+    object tbPesquisaEscolaESCNUM: TStringField
+      DisplayWidth = 10
+      FieldName = 'ESCNUM'
+      Size = 10
+    end
+    object tbPesquisaEscolaESCBAI: TStringField
+      FieldName = 'ESCBAI'
+      Size = 50
+    end
+    object tbPesquisaEscolaESCCID: TStringField
+      FieldName = 'ESCCID'
+      Size = 50
+    end
+    object tbPesquisaEscolaESCTEL: TStringField
+      FieldName = 'ESCTEL'
+      EditMask = '99999999999999;0;_'
+      Size = 15
+    end
+    object tbPesquisaEscolaESCMAI: TStringField
+      FieldName = 'ESCMAI'
+      Size = 50
+    end
+    object tbPesquisaEscolaESCOBS: TStringField
+      FieldName = 'ESCOBS'
+      Size = 50
+    end
+    object tbPesquisaEscolaESCCOD: TStringField
+      FieldName = 'ESCCOD'
+      Size = 6
+    end
+    object tbPesquisaEscolaESCDAT: TSQLTimeStampField
+      FieldName = 'ESCDAT'
+      Required = True
+    end
+  end
+  object dspPesquisEscola: TDataSetProvider
+    DataSet = tbPesquisaEscola
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 240
+    Top = 88
+  end
+  object tbNovoCodigoEscola: TSQLDataSet
+    SchemaName = 'sa'
+    CommandText = 
+      'SELECT ISNULL(MAX(ESCCOD) + 1, 1) AS NOVO_CODIGO_ESCOLA FROM ESC' +
+      'OLAS'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConexao
+    Left = 358
+    Top = 8
+    object tbNovoCodigoEscolaNOVO_CODIGO_ESCOLA: TIntegerField
+      FieldName = 'NOVO_CODIGO_ESCOLA'
+      Required = True
+    end
+  end
+  object tbUsuarios: TSQLDataSet
+    SchemaName = 'sa'
+    CommandText = 'SELECT * FROM USUARIOS'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConexao
+    Left = 462
+    Top = 8
+    object tbUsuariosUSUCOD: TStringField
+      FieldName = 'USUCOD'
+      Size = 6
+    end
+    object tbUsuariosUSUNOM: TStringField
+      FieldName = 'USUNOM'
+      Size = 50
+    end
+    object tbUsuariosUSUSEN: TStringField
+      FieldName = 'USUSEN'
+      Size = 8
+    end
+  end
+end

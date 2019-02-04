@@ -58,18 +58,22 @@ end;
 procedure TfmMenuEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   DadosCliente.Logout(StatusBar1.Panels[2].Text);
-  DadosCliente.DesconectarDCOM;
+  DadosCliente.DesconectarClienteComServidor;
   Application.Terminate;    
 end;
 
 procedure TfmMenuEscola.FormCreate(Sender: TObject);
+var
+  Dialogo: TfmLogin;
 begin
-  if not Assigned(fmLogin) then
-    fmLogin := TfmLogin.Create(Self);
-  fmLogin.ShowModal;
-
-  StatusBar1.Panels[0].Text := FormatDateTime(
-    '"Fortaleza   "dddd", "d" de "mmmm" de "yyyy', Date) + '    -    '+ TimeToStr(Now);
+  Dialogo := TfmLogin.Create(Self);
+  try
+    Dialogo.ShowModal;
+  finally
+    Dialogo.Release;
+  end;
+//  StatusBar1.Panels[0].Text := FormatDateTime(
+//    '"Fortaleza   "dddd", "d" de "mmmm" de "yyyy', Date) + '    -    '+ TimeToStr(Now);
 end;
 
 procedure TfmMenuEscola.Timer1Timer(Sender: TObject);
